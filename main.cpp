@@ -4,11 +4,7 @@
 
 int main() {
     std::vector<Studentas> studentai; 
-    char skaicMetodas;
     std::string filename;
-
-    std::cout << "Pasirinkite skaiciavimo metoda (V - Vidurkis, M - Mediana): ";
-    std::cin >> skaicMetodas;
 
     std::cout << "Norite duomenis ivesti ranka (R) ar nuskaityti is failo (F)? ";
     char dataChoice;
@@ -25,9 +21,8 @@ int main() {
         return 1;
     }
 
-    GalutinisBalas(studentai, skaicMetodas); 
+    GalutinisBalas(studentai); 
     displayTable(studentai); 
 
     return 0;
 }
-
