@@ -2,7 +2,8 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <iomanip> 
+#include <iomanip>
+
 
 void loadData(std::vector<Studentas>& studentai, const std::string& filename) {
     std::ifstream file(filename);
@@ -32,5 +33,6 @@ void loadData(std::vector<Studentas>& studentai, const std::string& filename) {
     }
 
     file.close();
-}
+} 
+
 
