@@ -10,8 +10,11 @@ struct Studentas {
     std::vector<double> ndBalai;
     double egzaminas;
     double galutBalas;
+    double galutBalasMed;
+    double galutBalasVid;
 };
 
 void loadData(std::vector<Studentas>& studentai, const std::string& filename);
 
 #endif
+
