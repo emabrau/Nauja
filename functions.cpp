@@ -29,7 +29,7 @@ void GalutinisBalas(std::vector<Studentas>& studentai) {
 }
 
 void displayTable(const std::vector<Studentas>& studentai) {
-    std::cout << std::left << std::setw(15) << "Vardas" << std::setw(15) << "Pavarde" << std::setw(20) << "Galutinis (Vid.)" << std::setw(20) << "Galutinis (Med.)" << std::endl;
+    std::cout << std::left << std::setw(15) << "Vardas" << std::setw(15) << "Pavarde" << std::setw(20) << "Galutinis (Vid)" << std::setw(20) << "Galutinis (Med)" << std::endl;
     std::cout << std::string(70, '-') << std::endl;
 
     for (const Studentas& studentas : studentai) {
