@@ -5,7 +5,7 @@
 #include "data.h"
 
 double Mediana(std::vector<double>& vec);
-void GalutinisBalas(std::vector<Studentas>& studentai, char calculationMethod);
+void GalutinisBalas(std::vector<Studentas>& studentai);
 void displayTable(const std::vector<Studentas>& studentai);
 void loadDataFromManualInput(std::vector<Studentas>& studentai); 
 
