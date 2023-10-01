@@ -39,38 +39,4 @@ void displayTable(const std::vector<Studentas>& studentai) {
 }
 
 
-void loadDataFromManualInput(std::vector<Studentas>& studentai) {
-    while (true) {
-        Studentas studentas;
 
-        std::cout << "Iveskite studento varda (noredami baigti spauskite Enter): ";
-        std::cin.ignore(); 
-        getline(std::cin, studentas.vardas);
-
-        if (studentas.vardas.empty()) {
-            break;
-        }
-
-        std::cout << "Iveskite studento pavarde: ";
-        getline(std::cin, studentas.pavarde);
-
-        double ndBalai;
-        std::cout << "Iveskite studento namu darbu balus " << studentas.vardas << " " << studentas.pavarde << " (Noredami baigti spauskite Enter):\n";
-        while (true) {
-            std::string input;
-            getline(std::cin, input);
-
-            if (input.empty()) {
-                break; 
-            }
-
-            ndBalai = std::stod(input);
-            studentas.ndBalai.push_back(ndBalai);
-        }
-
-        std::cout << "Iveskite studento egzamino rezultata " << studentas.vardas << " " << studentas.pavarde << ": ";
-        std::cin >> studentas.egzaminas;
-
-        studentai.push_back(studentas);
-    }
-}
