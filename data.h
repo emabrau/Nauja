@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+
 struct Studentas {
     std::string vardas;
     std::string pavarde;
@@ -15,6 +16,6 @@ struct Studentas {
 };
 
 void loadData(std::vector<Studentas>& studentai, const std::string& filename);
-
+void loadDataFromManualInput(std::vector<Studentas>& studentai);
+void chooseDataInputMethod(std::vector<Studentas>& studentai);
 #endif
-
