@@ -10,28 +10,10 @@ using namespace std;
 
 int main() {
     std::vector<Studentas> studentai; 
-    std::string filename;
 
     try {
-        std::cout << "Norite duomenis ivesti ranka (R) ar nuskaityti is failo (F)? ";
-        char dataChoice;
-        std::cin >> dataChoice;
-
-        if (dataChoice == 'R' || dataChoice == 'r') {
-            loadDataFromManualInput(studentai); 
-        } else if (dataChoice == 'F' || dataChoice == 'f') {
-            std::cout << "Iveskite failo pavadinima: ";
-            std::cin >> filename; 
-          try {
-                loadData(studentai, filename);
-            } catch (const std::ifstream::failure& e) {
-                std::cerr << "Error: Nepavyko atidaryti failo." << std::endl;
-                throw;  
-            }
-        } else {
-            throw std::invalid_argument("Netinkamas pasirinkimas.");
-        }
-            
+        chooseDataInputMethod(studentai); 
+        
         GalutinisBalas(studentai); 
 
         std::sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
@@ -46,6 +28,12 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
 
 
 
