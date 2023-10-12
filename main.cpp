@@ -4,23 +4,16 @@
 #include <algorithm>
 #include "functions.h"
 #include "data.h"
-#include <stdexcept>
 
 using namespace std;
 
 int main() {
-    std::vector<Studentas> studentai; 
-
     try {
-        chooseDataInputMethod(studentai); 
-        
-        GalutinisBalas(studentai); 
-
-        std::sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
-            return a.vardas < b.vardas;
-        });
-      
-        displayTable(studentai); 
+        generateStudentDataFile("student_data_1000.txt", 1000);
+        generateStudentDataFile("student_data_10000.txt", 10000);
+        generateStudentDataFile("student_data_100000.txt", 100000);
+        generateStudentDataFile("student_data_1000000.txt", 1000000);
+        generateStudentDataFile("student_data_10000000.txt", 10000000);
     } catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
         return 1;
@@ -28,7 +21,6 @@ int main() {
 
     return 0;
 }
-
 
 
 
