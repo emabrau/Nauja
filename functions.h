@@ -8,5 +8,6 @@ double Mediana(std::vector<double>& vec);
 void GalutinisBalas(std::vector<Studentas>& studentai);
 void displayTable(const std::vector<Studentas>& studentai);
 
-
+void generateStudentDataFile(const std::string& filename, int numRecords);
+void processStudentData(const std::string& filename);
 #endif
