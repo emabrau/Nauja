@@ -1,9 +1,13 @@
 #include "data.h"
+#include "functions.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
 #include <iomanip>
 #include <stdexcept>
+#include <sstream>
+
+using namespace std;
 
 
 void loadData(std::vector<Studentas>& studentai, const std::string& filename) {
@@ -79,29 +83,51 @@ void loadDataFromManualInput(std::vector<Studentas>& studentai) {
     }
 }
 
-void chooseDataInputMethod(std::vector<Studentas>& studentai) {
-    try {
-        std::cout << "Norite duomenis ivesti ranka (R) ar nuskaityti is failo (F)? ";
-        char dataChoice;
-        std::cin >> dataChoice;
+void generateStudentDataFile(const std::string& filename, int numRecords) {
+    std::ofstream file(filename);
 
-        if (dataChoice == 'R' || dataChoice == 'r') {
-            loadDataFromManualInput(studentai); 
-        } else if (dataChoice == 'F' || dataChoice == 'f') {
-            std::string filename;
-            std::cout << "Iveskite failo pavadinima: ";
-            std::cin >> filename; 
-            try {
-                loadData(studentai, filename);
-            } catch (const std::ifstream::failure& e) {
-                std::cerr << "Error: Nepavyko atidaryti failo." << std::endl;
-                throw;  
-            }
-        } else {
-            throw std::invalid_argument("Netinkamas pasirinkimas.");
-        }
-    } catch (const std::exception& e) {
-        throw e;
+    if (!file.is_open()) {
+        throw std::runtime_error("Failed to open file: " + filename);
     }
+
+    for (int i = 1; i <= numRecords; ++i) {
+        Studentas studentas;
+
+        studentas.vardas = "Vardas" + std::to_string(i);
+        studentas.pavarde = "Pavarde" + std::to_string(i);
+
+        for (int j = 0; j < 15; ++j) {
+            int balas = rand() % 10 + 1;
+            studentas.ndBalai.push_back(static_cast<double>(balas)); 
+        }
+        int egzaminas = rand() % 10 + 1;
+        studentas.egzaminas = static_cast<double>(egzaminas); 
+
+        double sumHomework = 0.0;
+        for (double score : studentas.ndBalai) {
+            sumHomework += score;
+        }
+
+       
+        float vidurkis = 0.4 * (sumHomework / 15) + 0.6 * studentas.egzaminas;
+        studentas.galutBalasVid = vidurkis;
+
+        file << studentas.vardas << " " << studentas.pavarde << " ";
+        for (double score : studentas.ndBalai) {
+            file << score << " ";
+        }
+        file << studentas.egzaminas << " " << studentas.galutBalasVid << "\n";
+    }
+
+    file.close();
 }
 
+
+
+
+void processStudentData(const std::string& filename) {
+    std::vector<Studentas> studentai;
+    loadData(studentai, filename);
+    GalutinisBalas(studentai);
+    displayTable(studentai);
+}
