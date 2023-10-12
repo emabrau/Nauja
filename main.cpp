@@ -1,26 +1,31 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <algorithm>
-#include "functions.h"
-#include "data.h"
+ #include <iostream>
+ #include <fstream>
+ #include <string>
+ #include <vector>
+ #include <cstdlib>
+ #include <ctime>
+ #include <iomanip>
+ #include <algorithm>
+ #include "data.h"
 
-using namespace std;
+ int main() {
+     srand(static_cast<unsigned int>(time(nullptr)));
 
-int main() {
-    try {
-        generateStudentDataFile("student_data_1000.txt", 1000);
-        generateStudentDataFile("student_data_10000.txt", 10000);
-        generateStudentDataFile("student_data_100000.txt", 100000);
-        generateStudentDataFile("student_data_1000000.txt", 1000000);
-        generateStudentDataFile("student_data_10000000.txt", 10000000);
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-        return 1;
-    }
+     
+     std::vector<int> recordSizes = {1000, 10000, 100000, 1000000, 10000000};
 
-    return 0;
-}
+     for (int size : recordSizes) {
+         std::string filename = "students_" + std::to_string(size) + ".txt";
+
+         
+         generateAndWriteStudentRecords(filename, size);
+
+         
+         processStudentData(filename);
+     }
+
+     return 0;
+ }
 
 
 
