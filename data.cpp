@@ -7,9 +7,12 @@
 #include <algorithm>
 #include "data.h"
 #include "functions.h"
+#include <chrono>
+
 
 
 void generateAndWriteStudentRecords(const std::string &filename, int size) {
+   auto startTime = std::chrono::high_resolution_clock::now();
     std::ofstream outFile(filename);
     for (int i = size; i >= 1; --i) {
         Studentas student = generateRandomStudent(i);
@@ -20,10 +23,18 @@ void generateAndWriteStudentRecords(const std::string &filename, int size) {
         outFile << " " << student.egzaminas << " " << student.galutBalas << std::endl;
     }
     outFile.close();
+
+   auto endTime = std::chrono::high_resolution_clock::now();
+  
+  auto duration = std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime);
+  
+  std::cout << "Laikas, per kuri sugeneravo " << filename << ": " << duration.count() << " sekundes" << std::endl;
 }
 
 
 void processStudentData(const std::string &filename) {
+   auto startTimeReading = std::chrono::high_resolution_clock::now();
+
     std::ifstream inFile(filename);
     if (!inFile.is_open()) {
         std::cerr << "Nepavyko atidaryti failo: " << filename << std::endl;
@@ -45,8 +56,17 @@ void processStudentData(const std::string &filename) {
     }
     inFile.close();
 
+  auto endTimeReading = std::chrono::high_resolution_clock::now();
+  
+  auto durationReading = std::chrono::duration_cast<std::chrono::seconds>(endTimeReading - startTimeReading);
+  
+  std::cout << "Laikas, per kuri nuskaite " << filename << ": " << durationReading.count() << " sekundes" << std::endl;
+
+  
+  
     std::sort(students.begin(), students.end(), compareStudents);
 
+   auto startTimeSorting = std::chrono::high_resolution_clock::now();
 
     std::ofstream outFileSorted(filename);
     for (const Studentas &sortedStudent : students) {
@@ -58,6 +78,13 @@ void processStudentData(const std::string &filename) {
     }
     outFileSorted.close();
 
+  auto endTimeSorting = std::chrono::high_resolution_clock::now();
+
+  auto durationSorting = std::chrono::duration_cast<std::chrono::seconds>(endTimeSorting - startTimeSorting);
+  std::cout << "Laikas, per kuri isrusiavo: " <<  filename << ": " << durationSorting.count() << " sekundes" << std::endl;
+
+   auto startTimeOutput = std::chrono::high_resolution_clock::now();
+  
     std::ifstream inFileSorted(filename);
     std::ofstream outFileNuskriaustukai("nuskriaustukai_" + filename);
     std::ofstream outFileKietiakai("kietiakai_" + filename);
@@ -89,6 +116,8 @@ void processStudentData(const std::string &filename) {
     inFileSorted.close();
     outFileNuskriaustukai.close();
     outFileKietiakai.close();
+   auto endTimeOutput = std::chrono::high_resolution_clock::now();
+  auto durationOutput = std::chrono::duration_cast<std::chrono::seconds>(endTimeOutput - startTimeOutput);
+  std::cout << "Laikas, per kuri isvede isrusiuotus " << filename <<  "duomenis: " << durationOutput.count() << " sekundes" << std::endl;
 }
-
 
