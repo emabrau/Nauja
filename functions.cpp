@@ -37,5 +37,3 @@ bool compareStudents(const Studentas &a, const Studentas &b) {
     return studentoNumerisA > studentoNumerisB;
 }
 
-
-
