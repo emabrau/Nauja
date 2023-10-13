@@ -15,6 +15,6 @@ struct Studentas {
 
 void generateAndWriteStudentRecords(const std::string &filename, int size);
 
-void processStudentData(const std::string &filename);
+void processStudentData(const std::string &filename, int size, int repetitions);
 
 #endif
