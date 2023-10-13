@@ -15,6 +15,10 @@
 void generateAndWriteStudentRecords(const std::string &filename, int size) {
    auto startTime = std::chrono::high_resolution_clock::now();
     std::ofstream outFile(filename);
+
+  std::vector<Studentas> students;
+  students.reserve(size);
+  
     for (int i = size; i >= 1; --i) {
         Studentas student = generateRandomStudent(i);
         outFile << student.vardas << " " << student.pavarde;
@@ -36,6 +40,7 @@ void generateAndWriteStudentRecords(const std::string &filename, int size) {
 void processStudentData(const std::string &filename, int size, int repetitions) {
     std::vector<double> readTimes;
     std::vector<double> sortTimes;
+    std::vector<double> writeTimes;
 
     for (int rep = 0; rep < repetitions; ++rep) {
         auto startTimeReading = std::chrono::high_resolution_clock::now();
@@ -84,7 +89,7 @@ void processStudentData(const std::string &filename, int size, int repetitions) 
         }
         outFileSorted.close();
 
-       
+       auto startTimeWrite = std::chrono::high_resolution_clock::now();
       std::string nuskriaustukaiFilename = "nuskriaustukai" + std::to_string(size) + ".txt";
       std::string kietiakaiFilename = "kietiakai" + std::to_string(size) + ".txt";
       
@@ -108,12 +113,21 @@ void processStudentData(const std::string &filename, int size, int repetitions) 
         }
         outFileNuskriaustukai.close();
         outFileKietiakai.close();
+      auto endTimeWrite = std::chrono::high_resolution_clock::now();
+
+      auto durationWrite = std::chrono::duration_cast<std::chrono::seconds>(endTimeWrite - startTimeWrite);
+      writeTimes.push_back(durationWrite.count());
     }
 
     double averageReadTime = std::accumulate(readTimes.begin(), readTimes.end(), 0.0) / repetitions;
     double averageSortTime = std::accumulate(sortTimes.begin(), sortTimes.end(), 0.0) / repetitions;
+  double averageWriteTime = std::accumulate(writeTimes.begin(), writeTimes.end(), 0.0) / repetitions;
 
     std::cout << "Vidutinis nuskaitymo laikas: " << averageReadTime << " sekundes" << std::endl;
     std::cout << "Vidutinis rusiavimo laikas: " << averageSortTime << " sekundes" << std::endl;
-}
 
+  std::cout << "Vidutinis perrasymo laikas: " << averageWriteTime << " sekundes" << std::endl;
+
+
+  return;
+}
