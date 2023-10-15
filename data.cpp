@@ -31,9 +31,9 @@ void generateAndWriteStudentRecords(const std::string &filename, int size) {
 
    auto endTime = std::chrono::high_resolution_clock::now();
   
-  auto duration = std::chrono::duration_cast<std::chrono::seconds>(endTime - startTime);
+  auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
   
-  std::cout << "Laikas, per kuri sugeneravo " << filename << ": " << duration.count() << " sekundes" << std::endl;
+  std::cout << "Laikas, per kuri sugeneravo " << filename << ": " << duration.count() /1000 << " s" << std::endl;
 }
 
 
@@ -68,7 +68,7 @@ void processStudentData(const std::string &filename, int size, int repetitions) 
 
         auto endTimeReading = std::chrono::high_resolution_clock::now();
 
-        auto durationReading = std::chrono::duration_cast<std::chrono::seconds>(endTimeReading - startTimeReading);
+        auto durationReading = std::chrono::duration_cast<std::chrono::milliseconds>(endTimeReading - startTimeReading);
 
         readTimes.push_back(durationReading.count());
 
@@ -76,7 +76,7 @@ void processStudentData(const std::string &filename, int size, int repetitions) 
         std::sort(students.begin(), students.end(), compareStudents);
         auto endTimeSorting = std::chrono::high_resolution_clock::now();
 
-        auto durationSorting = std::chrono::duration_cast<std::chrono::seconds>(endTimeSorting - startTimeSorting);
+        auto durationSorting = std::chrono::duration_cast<std::chrono::milliseconds>(endTimeSorting - startTimeSorting);
         sortTimes.push_back(durationSorting.count());
 
         std::ofstream outFileSorted(filename);
@@ -115,7 +115,7 @@ void processStudentData(const std::string &filename, int size, int repetitions) 
         outFileKietiakai.close();
       auto endTimeWrite = std::chrono::high_resolution_clock::now();
 
-      auto durationWrite = std::chrono::duration_cast<std::chrono::seconds>(endTimeWrite - startTimeWrite);
+      auto durationWrite = std::chrono::duration_cast<std::chrono::milliseconds>(endTimeWrite - startTimeWrite);
       writeTimes.push_back(durationWrite.count());
     }
 
@@ -123,11 +123,11 @@ void processStudentData(const std::string &filename, int size, int repetitions) 
     double averageSortTime = std::accumulate(sortTimes.begin(), sortTimes.end(), 0.0) / repetitions;
   double averageWriteTime = std::accumulate(writeTimes.begin(), writeTimes.end(), 0.0) / repetitions;
 
-    std::cout << "Vidutinis nuskaitymo laikas: " << averageReadTime << " sekundes" << std::endl;
-    std::cout << "Vidutinis rusiavimo laikas: " << averageSortTime << " sekundes" << std::endl;
+    std::cout << "Vidutinis nuskaitymo laikas: " << averageReadTime/1000 << " s" << std::endl;
+    std::cout << "Vidutinis rusiavimo laikas: " << averageSortTime/1000 << " s" << std::endl;
 
-  std::cout << "Vidutinis perrasymo laikas: " << averageWriteTime << " sekundes" << std::endl;
-
+  std::cout << "Vidutinis perrasymo laikas: " << averageWriteTime/1000 << " s" << std::endl;
+  std::cout << "--------------------------------------------------------------" << std::endl;
 
   return;
 }
