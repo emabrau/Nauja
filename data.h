@@ -18,4 +18,5 @@ struct Studentas {
 void loadData(std::vector<Studentas>& studentai, const std::string& filename);
 void loadDataFromManualInput(std::vector<Studentas>& studentai);
 void chooseDataInputMethod(std::vector<Studentas>& studentai);
+void generateRandomData(std::vector<Studentas>& studentai, int count);
 #endif
