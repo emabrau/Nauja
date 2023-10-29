@@ -1,78 +1,51 @@
 #include <iostream>
- #include <fstream>
- #include <string>
- #include <vector>
- #include <cstdlib>
- #include <ctime>
- #include <iomanip>
- #include <algorithm>
- #include "data.h"
+#include <fstream>
+#include <vector>
+#include <algorithm>
 #include "functions.h"
-#include <list>
+#include "data.h"
+#include <stdexcept>
+using namespace std;
 
 int main() {
-    srand(static_cast<unsigned int>(time(nullptr)));
+    std::vector<Studentas> studentai; 
+    std::string filename;
 
-    char dataChoice;
-    char containerChoice;
-    std::cout << "Norite duomenis ivesti ranka (R), nuskaityti is failo (F), ar sugeneruoti atsitiktinius duomenis (G)? ";
-    std::cin >> dataChoice;
+    try {
+        std::cout << "Norite duomenis ivesti ranka (R) ar nuskaityti is failo (F)? ";
+        char dataChoice;
+        std::cin >> dataChoice;
 
-    if (dataChoice == 'R' || dataChoice == 'r') {
-        std::vector<Studentas> studentai;
-        loadDataFromManualInput(studentai);
-        GalutinisBalas(studentai);
-        displayTable(studentai);
-    } else if (dataChoice == 'F' || dataChoice == 'f') {
-        std::vector<Studentas> studentai;
-        std::string filename;
-        std::cout << "Iveskite failo pavadinima: ";
-        std::cin >> filename;
-        try {
-            loadData(studentai, filename);
-            GalutinisBalas(studentai);
-            displayTable(studentai);
-        } catch (const std::ifstream::failure& e) {
-            std::cerr << "Error: Nepavyko atidaryti failo." << std::endl;
-            return 1;
-        }
-    } else if (dataChoice == 'G' || dataChoice == 'g') {
-        std::cout << "Pasirinkite duomenu struktura (V - Vektorius, L - Listas): ";
-        std::cin >> containerChoice;
-
-        if (containerChoice == 'V' || containerChoice == 'v') {
-            std::vector<int> recordSizes = {1000, 10000, 100000, 1000000, 10000000};
-            int repetitions = 5;
-
-            for (int size : recordSizes) {
-                std::string filename = "studentai_" + std::to_string(size) + ".txt";
-
-                generateAndWriteStudentRecordsV(filename, size);
-                processStudentDataV(filename, size, repetitions);
-            }
-        } else if (containerChoice == 'L' || containerChoice == 'l') {
-            std::list<int> recordSizes = {1000, 10000, 100000, 1000000, 10000000};
-            int repetitions = 5;
-
-            for (int size : recordSizes) {
-                std::string filename = "studentai_" + std::to_string(size) + ".txt";
-
-                generateAndWriteStudentRecordsL(filename, size);
-                processStudentDataL(filename, size, repetitions);
+        if (dataChoice == 'R' || dataChoice == 'r') {
+            loadDataFromManualInput(studentai); 
+        } else if (dataChoice == 'F' || dataChoice == 'f') {
+            std::cout << "Iveskite failo pavadinima: ";
+            std::cin >> filename; 
+          try {
+                loadData(studentai, filename);
+            } catch (const std::ifstream::failure& e) {
+                std::cerr << "Error: Nepavyko atidaryti failo." << std::endl;
+                throw;  
             }
         } else {
-            std::cout << "Netinkamas pasirinkimas. Prasome pairinkti 'V' arba 'L'." << std::endl;
-            return 1;
+            throw std::invalid_argument("Netinkamas pasirinkimas.");
         }
-    } else {
-        std::cout << "Netinkamas pasirinkimas. Prasome pairinkti 'V', 'L' arba 'G'." << std::endl;
+
+        chooseDataInputMethod(studentai); 
+
+        GalutinisBalas(studentai); 
+
+        std::sort(studentai.begin(), studentai.end(), [](const Studentas& a, const Studentas& b) {
+            return a.vardas < b.vardas;
+        });
+      
+        displayTable(studentai); 
+    } catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
         return 1;
     }
-
     return 0;
 }
-
-
 
 
 
