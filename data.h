@@ -13,8 +13,10 @@ struct Studentas {
 };
 
 
-void generateAndWriteStudentRecords(const std::string &filename, int size);
+void generateAndWriteStudentRecordsV(const std::string &filename, int size);
+void generateAndWriteStudentRecordsL(const std::string &filename, int size);
 
-void processStudentData(const std::string &filename, int size, int repetitions);
+void processStudentDataV(const std::string &filename, int size, int repetitions);
+void processStudentDataL(const std::string &filename, int size, int repetitions);
 
 #endif
