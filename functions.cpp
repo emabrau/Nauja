@@ -29,11 +29,11 @@ Studentas generateRandomStudent(int studentoNumeris) {
 
 
 bool compareStudents(const Studentas &a, const Studentas &b) {
-    
+
     int studentoNumerisA = std::stoi(a.vardas.substr(6)); 
     int studentoNumerisB= std::stoi(b.vardas.substr(6));
 
-    
+
     return studentoNumerisA > studentoNumerisB;
 }
 
