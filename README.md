@@ -26,9 +26,10 @@ Pasirinkus automatinį duomenų failų generavimą galimos trys strategijos: 1 s
 2pav. v0.3. Automatinis duomenų failų generavimas naudojant list konteinerį.
 ![Screenshot 2023-11-12 215828](https://github.com/emabrau/EB1/assets/144418033/4178d7fa-b30f-4649-a98d-50d776591fd8)
 3pav. v1.0. Automatinis duomenų failų generavimas naudojant vector konteinerį.
-![Screenshot 2023-11-12 201735](https://github.com/emabrau/EB1/assets/144418033/ba287f5f-cb52-48ce-a822-1d4202a0b6f3)
+![Screenshot 2023-11-12 221742](https://github.com/emabrau/EB1/assets/144418033/0d446c6a-11e9-4799-8a67-8491cde60b9c)
 4pav. v1.0. Automatinis duomenų failų generavimas naudojant list konteinerį.
-![Screenshot 2023-11-12 203706](https://github.com/emabrau/EB1/assets/144418033/f8b119e7-917b-40c3-85e0-0ea1777e5343)
+![image](https://github.com/emabrau/EB1/assets/144418033/78f77008-309b-459a-920f-362b8cc4f7f4)
+
 
 
 
