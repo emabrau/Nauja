@@ -14,3 +14,17 @@ Rankinis duomenų įvedimas (R): vartotojai gali rankiniu būdu įvesti studento
 Duomenų nuskaitymas iš failo (F): vartotojai gali nuskaityti studentų duomenis iš anksčiau sugeneruoto failo. Programa apskaičiuoja kiekvieno studento galutinį balą pagal vidurkį ir pagal medianą ir išveda rezultatą lentelėje.
 Automatinis duomenų failų generavimas (G): vartotojui pasirinkus automatinį duomenų failų generavimą, leidžiama rinktis, ar duomenis saugoti vektoriuje, ar sąraše (liste). Programa sugeneruoja 5 duomenų failus: ,,studentai_1000", ,,studentai_10000", ,,studentai_100000", ,,studentai_1000000" ir ,,studentai_10000000", kuriuose yra pateikiami studentų vardas, pavardė, galutinis balas pagal vidurkį ir pagal medianą. Tuomet programa nuskaito studentų duomenis iš sugeneruotų failų ir apdoroja juos rūšiuodama pagal studentų vardus. Taip pat studentai skirstomi į dvi grupes: „kietiakai“ (aukštesnius pažymius turintys studentai) ir „nuskriaustukai“ (žemesnius pažymius turintys studentai). Po apdorojimo duomenys įrašomi į naujus failus, "nuskriaustukai_n.txt" ir "kietiakai_n.txt", čia n - skaičius, atitinkantis išrūšiuoto failo ,,studentai_n.txt" n skaičių. Programa taip pat matuoja failų generavimo, nuskaitymo, rūšiavimo ir išvedimo trukmę sekundėmis. Siekiant užtikrinti tikslų laiko matavimą, programa pakartoja kiekvieno studentų duomenų failo apdorojimą kelis kartus. Apskaičiuojamas vidutinis kiekvieno failo duomenų skaitymo, rūšiavimo ir rašymo laikas.
 Testavimo sistemos parametrai: Procesorius: 4CPUs, 3.30GHz, Atmintis: 16.0GB RAM (15.7GB naudojama), SSD
+
+
+v1.0 release
+
+Rankinis duomenų įvedimas ir duomenų nuskaitymas iš failo lieka tokie patys kaip ir v0.3. 
+Pasirinkus automatinį duomenų failų generavimą galimos trys strategijos: 1 strategija - bendro studentai konteinerio (vector ir list tipų) skaidymas į du naujus to paties tipo konteinerius: "nuskriaustukų" ir "kietiakų". Tokiu būdu tas pats studentas yra dvejuose konteineriuose: bendrame studentai ir viename iš suskaidytų. 2 strategija - bendro studentų konteinerio (vector ir list) skaidymas panaudojant tik vieną naują konteinerį: "nuskriaustukai". Tokiu būdu, jei studentas yra nuskriaustukas, jį turime įkelti į naująjį "nuskriaustukų" konteinerį ir ištrinti iš bendro studentai konteinerio. Po šio žingsnio studentai konteineryje liks vien tik kietiakai. 3 strategija - bendro studentų konteinerio (vector ir list) skaidymas panaudojant 2 strategiją ir std::partition algoritmą.
+
+![Screenshot 2023-11-12 214230](https://github.com/emabrau/EB1/assets/144418033/172499e6-8c5b-4a9a-80db-96f44ca39f22)
+![Screenshot 2023-11-12 215828](https://github.com/emabrau/EB1/assets/144418033/4178d7fa-b30f-4649-a98d-50d776591fd8)
+![Screenshot 2023-11-12 201735](https://github.com/emabrau/EB1/assets/144418033/ba287f5f-cb52-48ce-a822-1d4202a0b6f3)
+![Screenshot 2023-11-12 203706](https://github.com/emabrau/EB1/assets/144418033/f8b119e7-917b-40c3-85e0-0ea1777e5343)
+
+
+
