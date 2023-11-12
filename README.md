@@ -21,9 +21,13 @@ v1.0 release
 Rankinis duomenų įvedimas ir duomenų nuskaitymas iš failo lieka tokie patys kaip ir v0.3. 
 Pasirinkus automatinį duomenų failų generavimą galimos trys strategijos: 1 strategija - bendro studentai konteinerio (vector ir list tipų) skaidymas į du naujus to paties tipo konteinerius: "nuskriaustukų" ir "kietiakų". Tokiu būdu tas pats studentas yra dvejuose konteineriuose: bendrame studentai ir viename iš suskaidytų. 2 strategija - bendro studentų konteinerio (vector ir list) skaidymas panaudojant tik vieną naują konteinerį: "nuskriaustukai". Tokiu būdu, jei studentas yra nuskriaustukas, jį turime įkelti į naująjį "nuskriaustukų" konteinerį ir ištrinti iš bendro studentai konteinerio. Po šio žingsnio studentai konteineryje liks vien tik kietiakai. 3 strategija - bendro studentų konteinerio (vector ir list) skaidymas panaudojant 2 strategiją ir std::partition algoritmą.
 
+1pav. v0.3. Automatinis duomenų failų generavimas naudojant vector konteinerį.
 ![Screenshot 2023-11-12 214230](https://github.com/emabrau/EB1/assets/144418033/172499e6-8c5b-4a9a-80db-96f44ca39f22)
+2pav. v0.3. Automatinis duomenų failų generavimas naudojant list konteinerį.
 ![Screenshot 2023-11-12 215828](https://github.com/emabrau/EB1/assets/144418033/4178d7fa-b30f-4649-a98d-50d776591fd8)
+3pav. v1.0. Automatinis duomenų failų generavimas naudojant vector konteinerį.
 ![Screenshot 2023-11-12 201735](https://github.com/emabrau/EB1/assets/144418033/ba287f5f-cb52-48ce-a822-1d4202a0b6f3)
+4pav. v1.0. Automatinis duomenų failų generavimas naudojant list konteinerį.
 ![Screenshot 2023-11-12 203706](https://github.com/emabrau/EB1/assets/144418033/f8b119e7-917b-40c3-85e0-0ea1777e5343)
 
 
