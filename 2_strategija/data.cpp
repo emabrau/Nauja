@@ -320,7 +320,7 @@ void processStudentDataL(const std::string& filename, int size, int repetitions)
     double averageSortTime = std::accumulate(sortTimes.begin(), sortTimes.end(), 0.0) / repetitions;
     double averageWriteTime = std::accumulate(writeTimes.begin(), writeTimes.end(), 0.0) / repetitions;
 
-    std::cout << "Vidutinis generavimo laikas: " << averageReadTime / 1000 << " s" << std::endl;
+    std::cout << "Vidutinis nuskaitymo laikas: " << averageReadTime / 1000 << " s" << std::endl;
     std::cout << "Vidutinis rusiavimo laikas: " << averageSortTime / 1000 << " s" << std::endl;
     std::cout << "Vidutinis perrasymo laikas: " << averageWriteTime / 1000 << " s" << std::endl;
     std::cout << "--------------------------------------------------------------" << std::endl;
