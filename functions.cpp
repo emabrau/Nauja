@@ -10,6 +10,10 @@
 #include "data.h"
 #include "functions.h"
 
+StudentFunctions::StudentFunctions() {}
+
+StudentFunctions::~StudentFunctions() {}
+
 const int StudentFunctions::numNamuDarbu = 10;
 
 Studentas StudentFunctions::generateRandomStudent(int studentoNumeris) {
