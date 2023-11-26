@@ -6,6 +6,7 @@
 
 class Studentas {
 public:
+    Studentas();
     std::string vardas;
     std::string pavarde;
     std::vector<double> ndBalai;
@@ -17,6 +18,7 @@ public:
 
 class DataManager {
 public:
+    DataManager() noexcept;
     void generateAndWriteStudentRecordsV(const std::string &filename, int size);
     void generateAndWriteStudentRecordsL(const std::string &filename, int size);
 
