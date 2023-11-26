@@ -19,6 +19,8 @@ Studentas::~Studentas() {}
 
 DataManager::DataManager() noexcept {}
 
+DataManager::~DataManager() {}
+
 void DataManager::loadDataFromManualInput(std::vector<Studentas>& studentai) {
     try {
         while (true) {
