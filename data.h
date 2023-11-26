@@ -7,6 +7,7 @@
 class Studentas {
 public:
     Studentas();
+    ~Studentas();
     std::string vardas;
     std::string pavarde;
     std::vector<double> ndBalai;
