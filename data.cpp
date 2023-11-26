@@ -15,6 +15,8 @@
 
 Studentas::Studentas() : egzaminas(0), galutBalas(0), galutBalasMed(0), galutBalasVid(0) {}
 
+Studentas::~Studentas() {}
+
 DataManager::DataManager() noexcept {}
 
 void DataManager::loadDataFromManualInput(std::vector<Studentas>& studentai) {
