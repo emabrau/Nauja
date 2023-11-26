@@ -20,6 +20,7 @@ public:
 class DataManager {
 public:
     DataManager() noexcept;
+    ~DataManager();
     void generateAndWriteStudentRecordsV(const std::string &filename, int size);
     void generateAndWriteStudentRecordsL(const std::string &filename, int size);
 
