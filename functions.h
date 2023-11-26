@@ -7,6 +7,8 @@
 
 class StudentFunctions {
 public:
+    StudentFunctions();
+    ~StudentFunctions();
     static Studentas generateRandomStudent(int studentoNumeris);
     static bool compareStudents(const Studentas &a, const Studentas &b);
     static void generateAndWriteStudentRecords(const std::string &filename, int size);
