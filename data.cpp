@@ -12,8 +12,10 @@
 #include <numeric>
 #include <sstream>
 
-#include "data.h"
-#include "functions.h"
+
+Studentas::Studentas() : egzaminas(0), galutBalas(0), galutBalasMed(0), galutBalasVid(0) {}
+
+DataManager::DataManager() noexcept {}
 
 void DataManager::loadDataFromManualInput(std::vector<Studentas>& studentai) {
     try {
