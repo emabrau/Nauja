@@ -17,6 +17,70 @@ Studentas::Studentas() : egzaminas(0), galutBalas(0), galutBalasMed(0), galutBal
 
 Studentas::~Studentas() {}
 
+Studentas::Studentas(const Studentas& other)
+: vardas(other.vardas),
+  pavarde(other.pavarde),
+  ndBalai(other.ndBalai),
+  egzaminas(other.egzaminas),
+  galutBalas(other.galutBalas) {}
+
+Studentas& Studentas::operator=(const Studentas& other) {
+    if (this != &other) {
+        vardas = other.vardas;
+        pavarde = other.pavarde;
+        ndBalai = other.ndBalai;
+        egzaminas = other.egzaminas;
+        galutBalas = other.galutBalas;
+    }
+    return *this;
+}
+
+std::istream& operator>>(std::istream& is, Studentas& student) {
+    std::cout << "Iveskite studento varda (noredami baigti spauskite Enter): ";
+    is.ignore();  // Ignore newline character
+    getline(is, student.vardas);
+
+    if (student.vardas.empty()) {
+        return is;
+    }
+
+    std::cout << "Iveskite studento pavarde: ";
+    getline(is, student.pavarde);
+
+    double ndBalai;
+    std::cout << "Iveskite studento " << student.vardas << " " << student.pavarde << " namu darbu balus (Noredami baigti spauskite Enter):\n";
+    while (true) {
+        std::string input;
+        getline(is, input);
+
+        if (input.empty()) {
+            break;
+        }
+
+        ndBalai = std::stod(input);
+        student.ndBalai.push_back(ndBalai);
+    }
+
+    std::cout << "Iveskite studento " << student.vardas << " " << student.pavarde << " egzamino rezultata: ";
+    is >> student.egzaminas;
+
+    return is;
+}
+
+
+std::ostream& operator<<(std::ostream& os, const Studentas& student) {
+    os << "Vardas: " << student.vardas << "\n";
+    os << "Pavarde: " << student.pavarde << "\n";
+    os << "Namu darbu balai: ";
+    for (double balas : student.ndBalai) {
+        os << balas << " ";
+    }
+    os << "\nEgzamino rezultatas: " << student.egzaminas << "\n";
+    os << "Galutinis balas: " << student.galutBalas << "\n";
+
+    return os;
+}
+
 DataManager::DataManager() noexcept {}
 
 DataManager::~DataManager() {}
@@ -155,7 +219,7 @@ void DataManager::generateAndWriteStudentRecordsL(const std::string &filename, i
     std::cout << "Laikas, per kuri sugeneravo " << filename << ": " << duration.count() / 1000 << " s" << std::endl;
 }
 
-void DataManager::processStudentDataV(const std::string &filename, int size, int repetitions) {
+void DataManager::processStudentDataV(int size, int repetitions) {
   std::vector<double> readTimes;
   std::vector<double> sortTimes;
   std::vector<double> writeTimes;
@@ -232,7 +296,7 @@ void DataManager::processStudentDataV(const std::string &filename, int size, int
   std::cout << "--------------------------------------------------------------" << std::endl;
 }
 
-void DataManager::processStudentDataL(const std::string &filename, int size, int repetitions) {
+void DataManager::processStudentDataL(int size, int repetitions) {
    std::vector<double> readTimes;
    std::vector<double> sortTimes;
    std::vector<double> writeTimes;
@@ -307,3 +371,4 @@ void DataManager::processStudentDataL(const std::string &filename, int size, int
    std::cout << "Vidutinis perrasymo laikas: " << averageWriteTime / 1000 << " s" << std::endl;
    std::cout << "--------------------------------------------------------------" << std::endl;
 }
+
