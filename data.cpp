@@ -13,16 +13,22 @@
 #include <sstream>
 
 
-Studentas::Studentas() : egzaminas(0), galutBalas(0), galutBalasMed(0), galutBalasVid(0) {}
+Studentas::Studentas() : egzaminas(0), galutBalas(0), galutBalasMed(0), galutBalasVid(0) {
+  std::cout<<"Default constructor called\n";
+}
 
-Studentas::~Studentas() {}
+Studentas::~Studentas() {
+  std::cout<<"Destructor called for "<<vardas<<" "<<pavarde<<"\n";
+}
 
 Studentas::Studentas(const Studentas& other)
 : vardas(other.vardas),
   pavarde(other.pavarde),
   ndBalai(other.ndBalai),
   egzaminas(other.egzaminas),
-  galutBalas(other.galutBalas) {}
+  galutBalas(other.galutBalas) {
+   std::cout<<"Copy constructor called\n";
+  }
 
 Studentas& Studentas::operator=(const Studentas& other) {
     if (this != &other) {
@@ -32,6 +38,7 @@ Studentas& Studentas::operator=(const Studentas& other) {
         egzaminas = other.egzaminas;
         galutBalas = other.galutBalas;
     }
+    std::cout<<"Copy asignment operator called\n";
     return *this;
 }
 
