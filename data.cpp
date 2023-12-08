@@ -14,11 +14,11 @@
 
 
 Studentas::Studentas() : egzaminas(0), galutBalas(0), galutBalasMed(0), galutBalasVid(0) {
-  std::cout<<"Default constructor called\n";
+  //std::cout<<"Default constructor called\n";
 }
 
 Studentas::~Studentas() {
-  std::cout<<"Destructor called for "<<vardas<<" "<<pavarde<<"\n";
+  //std::cout<<"Destructor called for "<<vardas<<" "<<pavarde<<"\n";
 }
 
 Studentas::Studentas(const Studentas& other)
@@ -27,7 +27,7 @@ Studentas::Studentas(const Studentas& other)
   ndBalai(other.ndBalai),
   egzaminas(other.egzaminas),
   galutBalas(other.galutBalas) {
-   std::cout<<"Copy constructor called\n";
+   //std::cout<<"Copy constructor called\n";
   }
 
 Studentas& Studentas::operator=(const Studentas& other) {
@@ -38,13 +38,13 @@ Studentas& Studentas::operator=(const Studentas& other) {
         egzaminas = other.egzaminas;
         galutBalas = other.galutBalas;
     }
-    std::cout<<"Copy asignment operator called\n";
+    //std::cout<<"Copy asignment operator called\n";
     return *this;
 }
 
 std::istream& operator>>(std::istream& is, Studentas& student) {
     std::cout << "Iveskite studento varda (noredami baigti spauskite Enter): ";
-    is.ignore();  // Ignore newline character
+    is.ignore();  
     getline(is, student.vardas);
 
     if (student.vardas.empty()) {
@@ -76,16 +76,15 @@ std::istream& operator>>(std::istream& is, Studentas& student) {
 
 
 std::ostream& operator<<(std::ostream& os, const Studentas& student) {
-    os << "Vardas: " << student.vardas << "\n";
-    os << "Pavarde: " << student.pavarde << "\n";
-    os << "Namu darbu balai: ";
-    for (double balas : student.ndBalai) {
-        os << balas << " ";
-    }
-    os << "\nEgzamino rezultatas: " << student.egzaminas << "\n";
-    os << "Galutinis balas: " << student.galutBalas << "\n";
 
-    return os;
+  os << std::left << std::setw(15) << student.vardas
+     << std::left << std::setw(15) << student.pavarde;
+
+  
+    os << std::fixed << std::setprecision(2) << std::setw(15) << student.galutBalasVid 
+     << std::fixed << std::setprecision(2) << std::setw(15) << student.galutBalasMed << "\n";
+
+  return os;
 }
 
 DataManager::DataManager() noexcept {}
@@ -96,37 +95,15 @@ void DataManager::loadDataFromManualInput(std::vector<Studentas>& studentai) {
     try {
         while (true) {
             Studentas studentas;
+          std::cin >> studentas; 
 
-            std::cout << "Iveskite studento varda (noredami baigti spauskite Enter): ";
-            std::cin.ignore(); 
-            getline(std::cin, studentas.vardas);
+              if (studentas.vardas.empty()) {
+                  break;
+              }
 
-            if (studentas.vardas.empty()) {
-                break;
-            }
-
-            std::cout << "Iveskite studento pavarde: ";
-            getline(std::cin, studentas.pavarde);
-
-            double ndBalai;
-            std::cout << "Iveskite studento " << studentas.vardas << " " << studentas.pavarde << " namu darbu balus " << " " << " (Noredami baigti spauskite Enter):\n";
-            while (true) {
-                std::string input;
-                getline(std::cin, input);
-
-                if (input.empty()) {
-                    break; 
-                }
-
-                ndBalai = std::stod(input);
-                studentas.ndBalai.push_back(ndBalai);
-            }
-
-            std::cout << "Iveskite studento " << studentas.vardas << " " << studentas.pavarde << " egzamino rezultata: ";
-            std::cin >> studentas.egzaminas;
-
-            studentai.push_back(studentas);
-        }
+              studentai.push_back(studentas);
+          }
+            
     } catch (const std::exception& e) {
         throw e;
     }
