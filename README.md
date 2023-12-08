@@ -1,6 +1,6 @@
 v1.2 release
 
-Tai yra programa, skirta apdoroti studentų nanmų darbų bei egzamino rezultatų duomenis. Vartotojui siūlomi keli studentų duomenų įvedimo būdai: rankinis įvedimas, skaitymas iš failo arba automatinis duomenų failų generavimas.
+Tai yra programa, skirta apdoroti studentų namų darbų bei egzamino rezultatų duomenis. Vartotojui siūlomi keli studentų duomenų įvedimo būdai: rankinis įvedimas, skaitymas iš failo arba automatinis duomenų failų generavimas.
 
 Rankinis duomenų įvedimas (R): vartotojai gali rankiniu būdu įvesti studento vardą, pavardę, namų darbų įverčius ir egzamino balą. Programa apskaičiuoja kiekvieno studento galutinį balą pagal vidurkį ir pagal medianą ir išveda rezultatą lentelėje.
 
