@@ -3,7 +3,9 @@ v1.2 release
 Tai yra programa, skirta apdoroti studentų nanmų darbų bei egzamino rezultatų duomenis. Vartotojui siūlomi keli studentų duomenų įvedimo būdai: rankinis įvedimas, skaitymas iš failo arba automatinis duomenų failų generavimas.
 
 Rankinis duomenų įvedimas (R): vartotojai gali rankiniu būdu įvesti studento vardą, pavardę, namų darbų įverčius ir egzamino balą. Programa apskaičiuoja kiekvieno studento galutinį balą pagal vidurkį ir pagal medianą ir išveda rezultatą lentelėje.
+
 Duomenų nuskaitymas iš failo (F): vartotojai gali nuskaityti studentų duomenis iš anksčiau sugeneruoto failo. Programa apskaičiuoja kiekvieno studento galutinį balą pagal vidurkį ir pagal medianą ir išveda rezultatą lentelėje.
+
 Automatinis duomenų failų generavimas (G): vartotojui pasirinkus automatinį duomenų failų generavimą, leidžiama rinktis, ar duomenis saugoti vektoriuje, ar sąraše (liste). Programa sugeneruoja 5 duomenų failus: ,,studentai_1000.txt", ,,studentai_10000.txt", ,,studentai_100000.txt", ,,studentai_1000000.txt" ir ,,studentai_10000000.txt", kuriuose yra pateikiami studentų vardas, pavardė, galutinis balas pagal vidurkį. Tuomet programa nuskaito studentų duomenis iš sugeneruotų failų ir apdoroja juos rūšiuodama pagal studentų vardus. Taip pat studentai skirstomi į dvi grupes: „kietiakai“ (aukštesnius pažymius turintys studentai) ir „nuskriaustukai“ (žemesnius pažymius turintys studentai). Po apdorojimo duomenys įrašomi į naujus failus, "nuskriaustukai_n.txt" ir "kietiakai_n.txt", čia n - skaičius, atitinkantis išrūšiuoto failo ,,studentai_n.txt" n skaičių. Programa taip pat matuoja failų generavimo, nuskaitymo, rūšiavimo ir išvedimo trukmę sekundėmis. Siekiant užtikrinti tikslų laiko matavimą, programa pakartoja kiekvieno studentų duomenų failo apdorojimą kelis kartus. Apskaičiuojamas vidutinis kiekvieno failo duomenų skaitymo, rūšiavimo ir rašymo laikas.
 
 1pav. Konsolės vaizdas, pasirinkus rankinį duomenų įvedimo būdą.
