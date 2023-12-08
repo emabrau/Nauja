@@ -67,8 +67,7 @@ void StudentFunctions::displayTable(const std::vector<Studentas>& studentai) {
     std::cout << std::left << std::setw(15) << "Vardas" << std::setw(15) << "Pavarde" << std::setw(20) << "Galutinis (Vid)" << std::setw(20) << "Galutinis (Med)" << std::endl;
     std::cout << std::string(70, '-') << std::endl;
 
-    for (const Studentas& studentas : studentai) {
-        std::cout << std::left << std::setw(15) << studentas.vardas << std::setw(15) << studentas.pavarde
-                  << std::fixed << std::setprecision(2) << std::setw(20) << studentas.galutBalasVid << std::setw(20) << studentas.galutBalasMed << std::endl;
+    for (const auto& student : studentai) {
+        std::cout << student << std::endl;
     }
 }
