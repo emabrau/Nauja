@@ -8,7 +8,10 @@
 class Human {
 public:
     virtual ~Human() = default;
-  
+    virtual void introduce() const = 0;
+ 
+
+
     std::string vardas;
     std::string pavarde;
 };
@@ -21,7 +24,7 @@ public:
     Studentas(const Studentas& other);
     Studentas& operator=(const Studentas& other);
 
-
+     void introduce() const override;
   
     friend std::istream& operator>>(std::istream& is, Studentas& student);
     friend std::ostream& operator<<(std::ostream& os, const Studentas& student);
@@ -50,6 +53,7 @@ public:
 };
 
 #endif
+
 
 
 
