@@ -35,7 +35,10 @@ Studentas& Studentas::operator=(const Studentas& other) {
     return *this;
 }
 
-
+void Studentas::introduce() const {
+    std::cout << "Hello, I am a student named " << vardas << " " << pavarde
+              << " with galutinis balas " << galutBalas << "." << std::endl;
+}
 
 std::istream& operator>>(std::istream& is, Studentas& student) {
     std::cout << "Iveskite studento varda (noredami baigti spauskite Enter): ";
@@ -350,3 +353,4 @@ void DataManager::processStudentDataL(int size, int repetitions) {
    std::cout << "Vidutinis perrasymo laikas: " << averageWriteTime / 1000 << " s" << std::endl;
    std::cout << "--------------------------------------------------------------" << std::endl;
 }
+
