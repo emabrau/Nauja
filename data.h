@@ -4,17 +4,28 @@
 #include <string>
 #include <vector>
 
-class Studentas {
+
+class Human {
+public:
+    virtual ~Human() = default;
+  
+    std::string vardas;
+    std::string pavarde;
+};
+
+
+class Studentas : public Human {
 public:
     Studentas();
-    ~Studentas();
+    ~Studentas() override;
     Studentas(const Studentas& other);
     Studentas& operator=(const Studentas& other);
 
+
+  
     friend std::istream& operator>>(std::istream& is, Studentas& student);
     friend std::ostream& operator<<(std::ostream& os, const Studentas& student);
-    std::string vardas;
-    std::string pavarde;
+
     std::vector<double> ndBalai;
     double egzaminas;
     double galutBalas;
@@ -39,6 +50,7 @@ public:
 };
 
 #endif
+
 
 
 
