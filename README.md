@@ -1,4 +1,4 @@
-v1.2 release
+v1.5 release
 
 Tai yra programa, skirta apdoroti studentų namų darbų bei egzamino rezultatų duomenis. Vartotojui siūlomi keli studentų duomenų įvedimo būdai: rankinis įvedimas, skaitymas iš failo arba automatinis duomenų failų generavimas.
 
@@ -8,19 +8,23 @@ Duomenų nuskaitymas iš failo (F): vartotojai gali nuskaityti studentų duomeni
 
 Automatinis duomenų failų generavimas (G): vartotojui pasirinkus automatinį duomenų failų generavimą, leidžiama rinktis, ar duomenis saugoti vektoriuje, ar sąraše (liste). Programa sugeneruoja 5 duomenų failus: ,,studentai_1000.txt", ,,studentai_10000.txt", ,,studentai_100000.txt", ,,studentai_1000000.txt" ir ,,studentai_10000000.txt", kuriuose yra pateikiami studentų vardas, pavardė, galutinis balas pagal vidurkį. Tuomet programa nuskaito studentų duomenis iš sugeneruotų failų ir apdoroja juos rūšiuodama pagal studentų vardus. Taip pat studentai skirstomi į dvi grupes: „kietiakai“ (aukštesnius pažymius turintys studentai) ir „nuskriaustukai“ (žemesnius pažymius turintys studentai). Po apdorojimo duomenys įrašomi į naujus failus, "nuskriaustukai_n.txt" ir "kietiakai_n.txt", čia n - skaičius, atitinkantis išrūšiuoto failo ,,studentai_n.txt" n skaičių. Programa taip pat matuoja failų generavimo, nuskaitymo, rūšiavimo ir išvedimo trukmę sekundėmis. Siekiant užtikrinti tikslų laiko matavimą, programa pakartoja kiekvieno studentų duomenų failo apdorojimą kelis kartus. Apskaičiuojamas vidutinis kiekvieno failo duomenų skaitymo, rūšiavimo ir rašymo laikas.
 
-Nuo v1.1 skiriasi tuo, jog realizuoti visi reikiami "Rule of three" (destruktorius, kopijavimo konstruktorius ir kopijavimo priskyrimo operatorius) ir įvesties/išvesties operatoriai Studentas klasei.
+Nuo v1.2 skiriasi tuo, jog vietoje turėtos vienos Studentas klasės sukurtos dvi naujos: bazinė (abstrakti) klasė Human, skirta bendrai aprašyti žmogų ir iš jos išvestinė klasė - Studentas.
 
-1pav. Konsolės vaizdas, pasirinkus rankinį duomenų įvedimo būdą.
+1pav. Bandant sukurti Human klasės objektą, konsolėje atsiranda ši error žinutė, reiškianti, jog Human klasė tikrai yra abstrakti.
+![image](https://github.com/emabrau/Nauja/assets/144418033/e625d6e8-102d-4f6f-9d8c-0126dca83052)
+
+
+2pav. Konsolės vaizdas, pasirinkus rankinį duomenų įvedimo būdą.
 ![image](https://github.com/emabrau/Nauja/assets/144418033/7b9f7a92-0e56-420a-92de-24af7f882892)
 
-2pav. Konsolės vaizdas, pasirinkus duomenų nuskaitymą iš failo.
+3pav. Konsolės vaizdas, pasirinkus duomenų nuskaitymą iš failo.
 ![image](https://github.com/emabrau/Nauja/assets/144418033/6722c031-d6de-4287-86ef-40bebe274edb)
 
-3pav. Konsolės vaizdas, pasirinkus automatinį duomenų generavimą ir vektoriaus struktūrą. 
+4pav. Konsolės vaizdas, pasirinkus automatinį duomenų generavimą ir vektoriaus struktūrą. 
 
 ![image](https://github.com/emabrau/Nauja/assets/144418033/d59c57d6-0903-4071-8346-9e944bfd2f96)
 
-4pav. Konsolės vaizdas, pasirinkus automatinį duomenų generavimą ir sąrašo struktūrą.
+5pav. Konsolės vaizdas, pasirinkus automatinį duomenų generavimą ir sąrašo struktūrą.
 ![image](https://github.com/emabrau/Nauja/assets/144418033/0ae2eca5-bfed-49ba-a47e-c0b544690029)
 
 
