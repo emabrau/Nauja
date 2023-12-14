@@ -73,7 +73,6 @@ int main() {
         std::cout << "Netinkamas pasirinkimas. Prasome pairinkti 'V', 'L' arba 'G'." << std::endl;
         return 1;
     }
-
+  //Human human; - parodoma, kad Human klase yra abstrakti
     return 0;
 }
-
