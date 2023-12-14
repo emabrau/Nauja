@@ -353,4 +353,3 @@ void DataManager::processStudentDataL(int size, int repetitions) {
    std::cout << "Vidutinis perrasymo laikas: " << averageWriteTime / 1000 << " s" << std::endl;
    std::cout << "--------------------------------------------------------------" << std::endl;
 }
-
