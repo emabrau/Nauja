@@ -71,3 +71,4 @@ void StudentFunctions::displayTable(const std::vector<Studentas>& studentai) {
         std::cout << student << std::endl;
     }
 }
+
