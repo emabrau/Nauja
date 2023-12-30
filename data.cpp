@@ -13,9 +13,79 @@
 #include <sstream>
 
 
-Studentas::Studentas() : egzaminas(0), galutBalas(0), galutBalasMed(0), galutBalasVid(0) {}
+Studentas::Studentas() : egzaminas(0), galutBalas(0), galutBalasMed(0), galutBalasVid(0) {
 
-Studentas::~Studentas() {}
+}
+
+Studentas::~Studentas() {
+  
+}
+
+Studentas::Studentas(const Studentas& other)
+: vardas(other.vardas),
+  pavarde(other.pavarde),
+  ndBalai(other.ndBalai),
+  egzaminas(other.egzaminas),
+  galutBalas(other.galutBalas) {
+   
+  }
+
+Studentas& Studentas::operator=(const Studentas& other) {
+    if (this != &other) {
+        vardas = other.vardas;
+        pavarde = other.pavarde;
+        ndBalai = other.ndBalai;
+        egzaminas = other.egzaminas;
+        galutBalas = other.galutBalas;
+    }
+    
+    return *this;
+}
+
+std::istream& operator>>(std::istream& is, Studentas& student) {
+    std::cout << "Iveskite studento varda (noredami baigti spauskite Enter): ";
+    is.ignore();  
+    getline(is, student.vardas);
+
+    if (student.vardas.empty()) {
+        return is;
+    }
+
+    std::cout << "Iveskite studento pavarde: ";
+    getline(is, student.pavarde);
+
+    double ndBalai;
+    std::cout << "Iveskite studento " << student.vardas << " " << student.pavarde << " namu darbu balus (Noredami baigti spauskite Enter):\n";
+    while (true) {
+        std::string input;
+        getline(is, input);
+
+        if (input.empty()) {
+            break;
+        }
+
+        ndBalai = std::stod(input);
+        student.ndBalai.push_back(ndBalai);
+    }
+
+    std::cout << "Iveskite studento " << student.vardas << " " << student.pavarde << " egzamino rezultata: ";
+    is >> student.egzaminas;
+
+    return is;
+}
+
+
+std::ostream& operator<<(std::ostream& os, const Studentas& student) {
+
+  os << std::left << std::setw(15) << student.vardas
+     << std::left << std::setw(15) << student.pavarde;
+
+  
+    os << std::fixed << std::setprecision(2) << std::setw(15) << student.galutBalasVid 
+     << std::fixed << std::setprecision(2) << std::setw(15) << student.galutBalasMed << "\n";
+
+  return os;
+}
 
 DataManager::DataManager() noexcept {}
 
@@ -25,37 +95,15 @@ void DataManager::loadDataFromManualInput(std::vector<Studentas>& studentai) {
     try {
         while (true) {
             Studentas studentas;
+          std::cin >> studentas; 
 
-            std::cout << "Iveskite studento varda (noredami baigti spauskite Enter): ";
-            std::cin.ignore(); 
-            getline(std::cin, studentas.vardas);
+              if (studentas.vardas.empty()) {
+                  break;
+              }
 
-            if (studentas.vardas.empty()) {
-                break;
-            }
-
-            std::cout << "Iveskite studento pavarde: ";
-            getline(std::cin, studentas.pavarde);
-
-            double ndBalai;
-            std::cout << "Iveskite studento " << studentas.vardas << " " << studentas.pavarde << " namu darbu balus " << " " << " (Noredami baigti spauskite Enter):\n";
-            while (true) {
-                std::string input;
-                getline(std::cin, input);
-
-                if (input.empty()) {
-                    break; 
-                }
-
-                ndBalai = std::stod(input);
-                studentas.ndBalai.push_back(ndBalai);
-            }
-
-            std::cout << "Iveskite studento " << studentas.vardas << " " << studentas.pavarde << " egzamino rezultata: ";
-            std::cin >> studentas.egzaminas;
-
-            studentai.push_back(studentas);
-        }
+              studentai.push_back(studentas);
+          }
+            
     } catch (const std::exception& e) {
         throw e;
     }
@@ -155,7 +203,7 @@ void DataManager::generateAndWriteStudentRecordsL(const std::string &filename, i
     std::cout << "Laikas, per kuri sugeneravo " << filename << ": " << duration.count() / 1000 << " s" << std::endl;
 }
 
-void DataManager::processStudentDataV(const std::string &filename, int size, int repetitions) {
+void DataManager::processStudentDataV(int size, int repetitions) {
   std::vector<double> readTimes;
   std::vector<double> sortTimes;
   std::vector<double> writeTimes;
@@ -191,14 +239,16 @@ void DataManager::processStudentDataV(const std::string &filename, int size, int
           std::cerr << "Nepavyko sukurti failo: " << nuskriaustukaiFileName << std::endl;
           return;
       }
-      for (auto it = students.begin(); it != partitionPoint; ++it) {
-          outFileNuskriaustukai << it->vardas << " " << it->pavarde;
-          for (double score : it->ndBalai) {
-              outFileNuskriaustukai << " " << score;
-          }
-          outFileNuskriaustukai << " " << it->egzaminas << " " << it->galutBalas << std::endl;
-      }
-      outFileNuskriaustukai.close();
+     outFileNuskriaustukai << std::left << std::setw(15) << "Vardas" << std::setw(15) << "Pavarde"
+       << std::setw(20) << "Galutinis (Vid.)" << std::endl;
+
+     for (auto it = students.begin(); it != partitionPoint; ++it) {
+     outFileNuskriaustukai << std::left << std::setw(15) << it->vardas << std::setw(15) << it->pavarde
+           << std::fixed << std::setprecision(2) << std::setw(20) << it->galutBalas << std::endl;
+     }
+
+     outFileNuskriaustukai.close();
+
 
 
       std::string kietiakaiFileName = "kietiakai_" + std::to_string(size) + ".txt";
@@ -207,15 +257,15 @@ void DataManager::processStudentDataV(const std::string &filename, int size, int
           std::cerr << "Nepavyko sukurti failo: " << kietiakaiFileName << std::endl;
           return;
       }
+    outFileKietiakai << std::left << std::setw(15) << "Vardas" << std::setw(15) << "Pavarde"
+      << std::setw(20) << "Galutinis (Vid.)" <<  std::endl;
 
-      for (auto it = partitionPoint; it != students.end(); ++it) {
-          outFileKietiakai << it->vardas << " " << it->pavarde;
-          for (double score : it->ndBalai) {
-              outFileKietiakai << " " << score;
-          }
-          outFileKietiakai << " " << it->egzaminas << " " << it->galutBalas << std::endl;
-      }
-      outFileKietiakai.close();
+    for (auto it = partitionPoint; it != students.end(); ++it) {
+    outFileKietiakai << std::left << std::setw(15) << it->vardas << std::setw(15) << it->pavarde
+          << std::fixed << std::setprecision(2) << std::setw(20) << it->galutBalas <<  std::endl;
+    }
+
+    outFileKietiakai.close();
 
       auto endTimeWrite = std::chrono::high_resolution_clock::now();
       auto durationWrite = std::chrono::duration_cast<std::chrono::milliseconds>(endTimeWrite - endTimeSorting);
@@ -232,7 +282,7 @@ void DataManager::processStudentDataV(const std::string &filename, int size, int
   std::cout << "--------------------------------------------------------------" << std::endl;
 }
 
-void DataManager::processStudentDataL(const std::string &filename, int size, int repetitions) {
+void DataManager::processStudentDataL(int size, int repetitions) {
    std::vector<double> readTimes;
    std::vector<double> sortTimes;
    std::vector<double> writeTimes;
@@ -267,14 +317,16 @@ void DataManager::processStudentDataL(const std::string &filename, int size, int
            std::cerr << "Nepavyko sukurti failo: " << nuskriaustukaiFileName << std::endl;
            return;
        }
+       outFileNuskriaustukai << std::left << std::setw(15) << "Vardas" << std::setw(15) << "Pavarde"
+         << std::setw(20) << "Galutinis (Vid.)"  << std::endl;
+
        for (auto it = students.begin(); it != partitionPoint; ++it) {
-           outFileNuskriaustukai << it->vardas << " " << it->pavarde;
-           for (double score : it->ndBalai) {
-               outFileNuskriaustukai << " " << score;
-           }
-           outFileNuskriaustukai << " " << it->egzaminas << " " << it->galutBalas << std::endl;
+       outFileNuskriaustukai << std::left << std::setw(15) << it->vardas << std::setw(15) << it->pavarde
+             << std::fixed << std::setprecision(2) << std::setw(20) << it->galutBalas  << std::endl;
        }
+
        outFileNuskriaustukai.close();
+
 
 
        std::string kietiakaiFileName = "kietiakai_" + std::to_string(size) + ".txt";
@@ -284,13 +336,14 @@ void DataManager::processStudentDataL(const std::string &filename, int size, int
            return;
        }
 
+       outFileKietiakai << std::left << std::setw(15) << "Vardas" << std::setw(15) << "Pavarde"
+         << std::setw(20) << "Galutinis (Vid.)" << std::setw(20) << "Galutinis (Med)" << std::endl;
+
        for (auto it = partitionPoint; it != students.end(); ++it) {
-           outFileKietiakai << it->vardas << " " << it->pavarde;
-           for (double score : it->ndBalai) {
-               outFileKietiakai << " " << score;
-           }
-           outFileKietiakai << " " << it->egzaminas << " " << it->galutBalas << std::endl;
+       outFileKietiakai << std::left << std::setw(15) << it->vardas << std::setw(15) << it->pavarde
+             << std::fixed << std::setprecision(2) << std::setw(20) << it->galutBalas << std::endl;
        }
+
        outFileKietiakai.close();
 
        auto endTimeWrite = std::chrono::high_resolution_clock::now();
@@ -307,3 +360,4 @@ void DataManager::processStudentDataL(const std::string &filename, int size, int
    std::cout << "Vidutinis perrasymo laikas: " << averageWriteTime / 1000 << " s" << std::endl;
    std::cout << "--------------------------------------------------------------" << std::endl;
 }
+
