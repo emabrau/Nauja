@@ -8,6 +8,11 @@ class Studentas {
 public:
     Studentas();
     ~Studentas();
+    Studentas(const Studentas& other);
+    Studentas& operator=(const Studentas& other);
+
+    friend std::istream& operator>>(std::istream& is, Studentas& student);
+    friend std::ostream& operator<<(std::ostream& os, const Studentas& student);
     std::string vardas;
     std::string pavarde;
     std::vector<double> ndBalai;
@@ -24,8 +29,8 @@ public:
     void generateAndWriteStudentRecordsV(const std::string &filename, int size);
     void generateAndWriteStudentRecordsL(const std::string &filename, int size);
 
-    void processStudentDataV(const std::string &filename, int size, int repetitions);
-    void processStudentDataL(const std::string &filename, int size, int repetitions);
+    void processStudentDataV(int size, int repetitions);
+    void processStudentDataL(int size, int repetitions);
 
     void loadDataFromManualInput(std::vector<Studentas>& studentai);
     void loadData(std::vector<Studentas>& studentai, const std::string& filename);
@@ -34,5 +39,4 @@ public:
 };
 
 #endif
-
 
