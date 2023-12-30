@@ -53,7 +53,7 @@ int main() {
                 std::string filename = "studentai_" + std::to_string(size) + ".txt";
 
                 dm.generateAndWriteStudentRecordsV(filename, size);
-                dm.processStudentDataV(filename, size, repetitions);
+                dm.processStudentDataV(size, repetitions);
             }
         } else if (containerChoice == 'L' || containerChoice == 'l') {
             std::list<int> recordSizes = {1000, 10000, 100000, 1000000, 10000000};
@@ -63,7 +63,7 @@ int main() {
                 std::string filename = "studentai_" + std::to_string(size) + ".txt";
 
                 dm.generateAndWriteStudentRecordsL(filename, size);
-                dm.processStudentDataL(filename, size, repetitions);
+                dm.processStudentDataL(size, repetitions);
             }
         } else {
             std::cout << "Netinkamas pasirinkimas. Prasome pairinkti 'V' arba 'L'." << std::endl;
